@@ -43,7 +43,7 @@
         </button>
         
         <div class={`wa-dropdown-menu ${chatMenuActive ? '': 'tw-invisible'}`}>
-            <span class="wa-dropdown-item">
+            <span class="wa-dropdown-item" on:click={() => openChat(user)}>
                 Open Chat
             </span>
             <div class="wa-dropdown-item">

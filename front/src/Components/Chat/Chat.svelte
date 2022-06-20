@@ -59,7 +59,7 @@
         return n;
     };
 
-    let activeThread: any = {};
+    let activeThread: any = null;
 
     let forums = [
         {
@@ -228,9 +228,14 @@
         activeThread = user;
     }
 
+    function openForum() {
+        // should open chat like for users
+    }
+
     function closeChat() {
         chatVisibilityStore.set(false);
     }
+
     function onKeyDown(e: KeyboardEvent) {
         if (e.key === "Escape") {
             closeChat();
@@ -251,7 +256,7 @@
 
 <aside class="chatWindow" transition:fly={{ x: -1000, duration: 500 }} bind:this={chatWindowElement}>
     <section class="tw-p-0" bind:this={listDom}>
-        {#if !!activeThread.user_id}
+        {#if !!activeThread}
             <!-- thread -->
             <div class="tw-flex tw-flex-col tw-h-full tw-over">
                 <div class="tw-p-5">
@@ -479,7 +484,7 @@
                 {#if showForums}
                     <div class="tw-mt-3">
                         {#each forums as forum}
-                            <ChatForum {forum} />
+                            <ChatForum {forum} {openForum}/>
                         {/each}
                     </div>
                     <div class="tw-px-4 tw-mb-6 tw-flex tw-justify-end">
